@@ -11,7 +11,7 @@ export function Header() {
   return (
     <header className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
       <div className="flex items-center gap-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-pink-500">
+        <div className="flex h-10 w-10 items-center justify-center">
           <Image
             src="/image/logo.png"
             alt="Superspray Logo"
