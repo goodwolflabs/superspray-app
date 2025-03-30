@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
+@import '@rainbow-me/rainbowkit/styles.css';
 
 :root {
   --background: #ffffff;
@@ -11,13 +12,6 @@
   --color-foreground: var(--foreground);
   --font-sans: 'Urbanist', sans-serif;
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
