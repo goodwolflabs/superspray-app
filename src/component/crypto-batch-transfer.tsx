@@ -2,6 +2,7 @@
 
 import { ChevronDown, Clock, Settings, X } from 'lucide-react'
 import { useState } from 'react'
+import { useWallet } from '@/hooks/useWallet'
 
 export function Superspray() {
   const [addresses, setAddresses] = useState([
@@ -10,6 +11,7 @@ export function Superspray() {
     { address: '0x...', amount: '0.00' },
     { address: '0x...', amount: '0.00' },
   ])
+  const { isConnected, connect, connectors, isConnecting, sendBatchTransactions, isSending } = useWallet()
 
   const removeAddress = (index: number) => {
     const newAddresses = [...addresses]
@@ -23,6 +25,14 @@ export function Superspray() {
 
   const clearAll = () => {
     setAddresses([])
+  }
+
+  const handleSpray = async () => {
+    if (!isConnected) {
+      connect({ connector: connectors[0] })
+      return
+    }
+    await sendBatchTransactions(addresses)
   }
 
   return (
@@ -238,9 +248,11 @@ export function Superspray() {
           {/* Submit Button */}
           <button
             type="button"
-            className="w-full rounded-xl bg-pink-500 py-4 text-lg font-semibold text-white"
+            className="w-full rounded-xl bg-pink-500 py-4 text-lg font-semibold text-white disabled:opacity-50"
+            onClick={handleSpray}
+            disabled={isConnecting || isSending}
           >
-            Spray!
+            {isConnecting ? 'Connecting...' : isSending ? 'Sending...' : isConnected ? 'Spray!' : 'Connect Wallet'}
           </button>
         </div>
       </main>

@@ -14,10 +14,13 @@
     "check:prettier": "prettier --check ."
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.71.0",
     "lucide-react": "^0.485.0",
     "next": "15.2.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "viem": "^2.24.2",
+    "wagmi": "^2.14.15"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
