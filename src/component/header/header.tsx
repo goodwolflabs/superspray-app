@@ -1,21 +1,18 @@
 import { Bell, ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 
 export function Header() {
   return (
     <header className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
       <div className="flex items-center gap-2">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-pink-500">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Logo icon</title>
-            <path d="M12 4L4 8L12 12L20 8L12 4Z" fill="white" />
-            <path d="M4 12L12 16L20 12" stroke="white" strokeWidth="2" />
-          </svg>
+        <div className="flex h-10 w-10 items-center justify-center">
+          <Image
+            src="/image/logo.png"
+            alt="Superspray Logo"
+            width={24}
+            height={24}
+            className="object-contain"
+          />
         </div>
         <span className="text-xl font-bold">Superspray</span>
       </div>
