@@ -16,7 +16,8 @@
       "style": {
         "useConst": "error",
         "useTemplate": "error",
-        "useSingleVarDeclarator": "error"
+        "useSingleVarDeclarator": "error",
+        "noSemicolons": "error"
       }
     }
   },

@@ -1,7 +1,7 @@
-'use client';
+'use client'
 
-import { ChevronDown, Clock, Settings, X } from 'lucide-react';
-import { useState } from 'react';
+import { ChevronDown, Clock, Settings, X } from 'lucide-react'
+import { useState } from 'react'
 
 export function Superspray() {
   const [addresses, setAddresses] = useState([
@@ -9,40 +9,40 @@ export function Superspray() {
     { address: '0x...', amount: '0.00' },
     { address: '0x...', amount: '0.00' },
     { address: '0x...', amount: '0.00' },
-  ]);
+  ])
 
   const removeAddress = (index: number) => {
-    const newAddresses = [...addresses];
-    newAddresses.splice(index, 1);
-    setAddresses(newAddresses);
-  };
+    const newAddresses = [...addresses]
+    newAddresses.splice(index, 1)
+    setAddresses(newAddresses)
+  }
 
   const addNewAddress = () => {
-    setAddresses([...addresses, { address: '0x...', amount: '0.00' }]);
-  };
+    setAddresses([...addresses, { address: '0x...', amount: '0.00' }])
+  }
 
   const clearAll = () => {
-    setAddresses([]);
-  };
+    setAddresses([])
+  }
 
   return (
     <div className="min-h-screen bg-white font-sans">
       {/* Header */}
 
       {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-4 py-12">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-2">
+      <main className="mx-auto max-w-5xl px-4 py-12">
+        <div className="mb-16 text-center">
+          <h1 className="mb-2 text-4xl font-bold">
             Batch transfer tokens seamlessly
           </h1>
           <p className="text-xl text-gray-500">fast, secure, and affordable.</p>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-lg p-8 border">
+        <div className="rounded-3xl border bg-white p-8 shadow-lg">
           {/* Chain Selector */}
-          <div className="flex gap-2 mb-8">
-            <div className="bg-gray-100 rounded-full px-4 py-2 flex items-center gap-2">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+          <div className="mb-8 flex gap-2">
+            <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
                 <svg
                   width="12"
                   height="18"
@@ -58,8 +58,8 @@ export function Superspray() {
               </div>
               <span>Chain</span>
             </div>
-            <div className="bg-gray-100 rounded-full px-4 py-2 flex items-center gap-2">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+            <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
                 <svg
                   width="12"
                   height="18"
@@ -74,31 +74,31 @@ export function Superspray() {
                 </svg>
               </div>
               <span>ETH</span>
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="h-4 w-4" />
             </div>
             <div className="ml-auto flex gap-2">
               <button
                 type="button"
-                className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"
               >
-                <Clock className="w-5 h-5 text-gray-500" />
+                <Clock className="h-5 w-5 text-gray-500" />
               </button>
               <button
                 type="button"
-                className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100"
               >
-                <Settings className="w-5 h-5 text-gray-500" />
+                <Settings className="h-5 w-5 text-gray-500" />
               </button>
             </div>
           </div>
 
           {/* Send To Section */}
-          <div className="mb-4 flex justify-between items-center">
+          <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-semibold">Send To</h2>
             <div className="flex gap-2">
               <button
                 type="button"
-                className="bg-pink-500 text-white rounded-full px-4 py-2 flex items-center gap-2"
+                className="flex items-center gap-2 rounded-full bg-pink-500 px-4 py-2 text-white"
               >
                 <svg
                   width="16"
@@ -120,7 +120,7 @@ export function Superspray() {
               </button>
               <button
                 type="button"
-                className="bg-gray-100 text-gray-700 rounded-full px-4 py-2 flex items-center gap-2"
+                className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-gray-700"
               >
                 <svg
                   width="16"
@@ -144,37 +144,37 @@ export function Superspray() {
           </div>
 
           {/* Address Inputs */}
-          <div className="space-y-3 mb-6">
+          <div className="mb-6 space-y-3">
             {addresses.map((item, index) => (
               <div
                 key={`${item.address}-${item.amount}`}
                 className="flex gap-3"
               >
-                <div className="flex-1 bg-gray-100 rounded-xl px-4 py-3">
+                <div className="flex-1 rounded-xl bg-gray-100 px-4 py-3">
                   <div className="text-xs text-gray-500">Wallet address</div>
                   <div className="text-gray-700">{item.address}</div>
                 </div>
-                <div className="w-40 bg-gray-100 rounded-xl px-4 py-3">
+                <div className="w-40 rounded-xl bg-gray-100 px-4 py-3">
                   <div className="text-xs text-gray-500">0.00</div>
                   <div className="text-gray-700">ETH</div>
                 </div>
                 <button
                   type="button"
-                  className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center self-center"
+                  className="flex h-10 w-10 items-center justify-center self-center rounded-xl bg-gray-100"
                   onClick={() => removeAddress(index)}
                 >
-                  <X className="w-5 h-5 text-gray-500" />
+                  <X className="h-5 w-5 text-gray-500" />
                 </button>
               </div>
             ))}
           </div>
 
           {/* Action Buttons */}
-          <div className="flex justify-between items-center mb-6">
+          <div className="mb-6 flex items-center justify-between">
             <div className="flex gap-3">
               <button
                 type="button"
-                className="bg-gray-100 rounded-xl px-4 py-3 flex items-center gap-2"
+                className="flex items-center gap-2 rounded-xl bg-gray-100 px-4 py-3"
                 onClick={addNewAddress}
               >
                 <svg
@@ -197,7 +197,7 @@ export function Superspray() {
               </button>
               <button
                 type="button"
-                className="bg-gray-100 rounded-xl px-4 py-3 flex items-center gap-2"
+                className="flex items-center gap-2 rounded-xl bg-gray-100 px-4 py-3"
               >
                 <svg
                   width="16"
@@ -221,7 +221,7 @@ export function Superspray() {
               </button>
               <button
                 type="button"
-                className="text-gray-500 px-4 py-3"
+                className="px-4 py-3 text-gray-500"
                 onClick={clearAll}
               >
                 Clear all
@@ -238,12 +238,12 @@ export function Superspray() {
           {/* Submit Button */}
           <button
             type="button"
-            className="w-full bg-pink-500 text-white rounded-xl py-4 font-semibold text-lg"
+            className="w-full rounded-xl bg-pink-500 py-4 text-lg font-semibold text-white"
           >
             Spray!
           </button>
         </div>
       </main>
     </div>
-  );
+  )
 }

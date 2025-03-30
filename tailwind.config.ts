@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from 'tailwindcss'
 
 export default {
   darkMode: 'class',
@@ -10,4 +10,4 @@ export default {
     '*.{js,ts,jsx,tsx,mdx}',
   ],
   // ... existing code ...
-};
+}

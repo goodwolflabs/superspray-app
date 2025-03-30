@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "biome format --write .",
+    "format": "prettier --write .",
     "check": "biome check .",
-    "lint:biome": "biome lint ."
+    "lint:biome": "biome lint .",
+    "format:prettier": "prettier --write .",
+    "check:prettier": "prettier --check ."
   },
   "dependencies": {
     "lucide-react": "^0.485.0",
@@ -26,6 +28,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -1,10 +1,10 @@
-import { Bell, ChevronDown } from 'lucide-react';
+import { Bell, ChevronDown } from 'lucide-react'
 
 export function Header() {
   return (
-    <header className="border-b border-gray-100 px-4 py-3 flex justify-between items-center">
+    <header className="flex items-center justify-between border-b border-gray-100 px-4 py-3">
       <div className="flex items-center gap-2">
-        <div className="w-10 h-10 bg-pink-500 rounded-lg flex items-center justify-center">
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-pink-500">
           <svg
             width="24"
             height="24"
@@ -20,21 +20,21 @@ export function Header() {
         <span className="text-xl font-bold">Superspray</span>
       </div>
       <div className="flex items-center gap-4">
-        <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-          <Bell className="w-5 h-5 text-gray-500" />
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+          <Bell className="h-5 w-5 text-gray-500" />
         </div>
         <div className="flex items-center gap-2">
           <div className="text-right">
             <div className="font-bold">0.4500</div>
             <div className="text-xs text-gray-500">Mainnet</div>
           </div>
-          <div className="flex items-center gap-2 border rounded-full px-3 py-1.5">
-            <div className="w-6 h-6 bg-blue-500 rounded-full" />
+          <div className="flex items-center gap-2 rounded-full border px-3 py-1.5">
+            <div className="h-6 w-6 rounded-full bg-blue-500" />
             <span className="text-sm">0x55...50E4</span>
-            <ChevronDown className="w-4 h-4" />
+            <ChevronDown className="h-4 w-4" />
           </div>
         </div>
       </div>
     </header>
-  );
+  )
 }
