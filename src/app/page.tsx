@@ -1,4 +1,4 @@
-import { Superspray } from '@/component/crypto-batch-transfer'
+import { Superspray } from '@/component/superspray'
 
 export default function Home() {
   return <Superspray />

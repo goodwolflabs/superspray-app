@@ -10,12 +10,12 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Urbanist', sans-serif;
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Urbanist', var(--font-inter), sans-serif;
+  --font-mono: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Urbanist', sans-serif;
+  font-family: 'Urbanist', var(--font-inter), sans-serif;
 }

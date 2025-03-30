@@ -1,7 +1,7 @@
 'use client'
 
 import { ChevronDown, Clock, Settings, X } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useWallet } from '@/hooks/useWallet'
 
 export function Superspray() {
@@ -12,6 +12,19 @@ export function Superspray() {
     { address: '0x...', amount: '0.00' },
   ])
   const { isConnected, connect, connectors, isConnecting, sendBatchTransactions, isSending } = useWallet()
+
+  // Manejar el redimensionamiento de la ventana
+  useEffect(() => {
+    const handleResize = () => {
+      // Forzar un re-render suave cuando cambie el tamaño de la ventana
+      window.requestAnimationFrame(() => {
+        // No necesitamos hacer nada aquí, solo forzar un re-render
+      })
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const removeAddress = (index: number) => {
     const newAddresses = [...addresses]
@@ -258,4 +271,4 @@ export function Superspray() {
       </main>
     </div>
   )
-}
+} 
