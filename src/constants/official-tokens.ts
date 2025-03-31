@@ -3,6 +3,12 @@ import { OfficialTokensProps } from './official-tokens.type'
 export const officialTokenByChain: OfficialTokensProps[] = [
   {
     chainId: 919,
+    symbol: 'ETH',
+    address: '0x0000000000000000000000000000000000000000',
+    icon: '/coins/ethereum-coin.png',
+  },
+  {
+    chainId: 919,
     symbol: 'USDC.m',
     address: '0xd7dE2D2525A81A007FdFc8004DD8dbE7d60AF0c6',
     icon: '/coins/mode-wolf-coin.png',
@@ -12,6 +18,12 @@ export const officialTokenByChain: OfficialTokensProps[] = [
     symbol: 'SOL',
     address: '0x5875f5C23935d448A443691Cf216E0252B45Fc7c',
     icon: '/coins/mode-wolf-coin.png',
+  },
+  {
+    chainId: 34443,
+    symbol: 'ETH',
+    address: '0x0000000000000000000000000000000000000000',
+    icon: '/coins/ethereum-coin.png',
   },
   {
     chainId: 34443,
@@ -99,9 +111,21 @@ export const officialTokenByChain: OfficialTokensProps[] = [
   },
   {
     chainId: 84532,
+    symbol: 'ETH',
+    address: '0x0000000000000000000000000000000000000000',
+    icon: '/coins/ethereum-coin.png',
+  },
+  {
+    chainId: 84532,
     symbol: 'USDC.m',
     address: '0xfE8Ae0606Bd37DA4ab2886F7824ab82A2d0Ef582',
     icon: '/coins/mode-wolf-coin.png',
+  },
+  {
+    chainId: 8453,
+    symbol: 'ETH',
+    address: '0x0000000000000000000000000000000000000000',
+    icon: '/coins/ethereum-coin.png',
   },
   {
     chainId: 8453,
@@ -111,9 +135,21 @@ export const officialTokenByChain: OfficialTokensProps[] = [
   },
   {
     chainId: 11155420,
+    symbol: 'ETH',
+    address: '0x0000000000000000000000000000000000000000',
+    icon: '/coins/ethereum-coin.png',
+  },
+  {
+    chainId: 11155420,
     symbol: 'USDC.m',
     address: '0x2bC5313c164F7FafDa7629fb7942226fd3921904',
     icon: '/coins/mode-wolf-coin.png',
+  },
+  {
+    chainId: 10,
+    symbol: 'ETH',
+    address: '0x0000000000000000000000000000000000000000',
+    icon: '/coins/ethereum-coin.png',
   },
   {
     chainId: 10,
