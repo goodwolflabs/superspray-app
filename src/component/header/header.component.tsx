@@ -2,8 +2,8 @@
 
 import { Bell, Moon, Sun } from 'lucide-react'
 import Image from 'next/image'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useTheme } from '@/hooks/useTheme'
+import { CustomConnectButton } from '../ui/CustomConnectButton'
 
 export function Header() {
   const { theme, toggleTheme } = useTheme()
@@ -36,7 +36,7 @@ export function Header() {
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
           <Bell className="h-5 w-5 text-gray-500" />
         </div>
-        <ConnectButton />
+        <CustomConnectButton />
       </div>
     </header>
   )
