@@ -46,31 +46,37 @@ export function Superspray() {
 
   return (
     <div className="min-h-screen bg-white font-sans">
-      <main className="mx-auto max-w-5xl px-4 py-12">
-        <div className="mb-16 text-center">
+      <main className="mx-auto max-w-5xl px-4 py-8">
+        <div className="mb-10 text-center">
           <h1 className="mb-2 text-4xl font-bold">
             Batch transfer tokens seamlessly
           </h1>
           <p className="text-xl text-gray-500">fast, secure, and affordable.</p>
         </div>
 
-        <div className="rounded-3xl border bg-white p-8 shadow-lg border-gray-200">
+        <div className="rounded-3xl border bg-white p-7 shadow-lg border-gray-200">
           {/* Chain Selector */}
-          <div className="mb-8 flex gap-2">
+          <div className="mb-4 flex gap-2">
+            <div className='border border-gray-200 rounded-full flex gap-1 p-1'>
             <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
                 <ChainIcon />
               </div>
               <span>Chain</span>
             </div>
+            
             <div className="flex items-center gap-2 rounded-full [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] px-4 py-2">
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
                 <ChainIcon />
               </div>
               <span>ETH</span>
               <ChevronDown className="h-4 w-4" />
-            </div>
+            </div></div>
             <div className="ml-auto flex gap-2">
+            <Button className="flex items-center gap-2 rounded-xl [background-color:#FF5079] hover:opacity-90 px-4 py-2 text-white shadow-xs">
+                <AddIcon />
+                Import CSV
+              </Button>
               <Button variant="outline" size="icon" className="[border:1px_solid_#F1F1F1] shadow-xs rounded-full">
                 <Clock className="h-5 w-5 text-gray-500" />
               </Button>
@@ -81,18 +87,8 @@ export function Superspray() {
           </div>
 
           {/* Send To Section */}
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Send To</h2>
-            <div className="flex gap-2">
-              <Button className="flex items-center gap-2 rounded-full [background-color:#FF5079] hover:opacity-90 px-4 py-2 text-white shadow-xs">
-                <AddIcon />
-                Import CSV
-              </Button>
-              <Button variant="outline" className="flex items-center gap-2 rounded-full px-4 py-2 text-gray-700 [border:1px_solid_#F1F1F1] shadow-xs">
-                <AddIcon />
-                Export CSV
-              </Button>
-            </div>
+          <div className="mb-2 flex items-center justify-between">
+            <h2 className="text-sm font-semibold ml-1">Send To</h2>
           </div>
 
           {/* Address Inputs */}
@@ -104,11 +100,11 @@ export function Superspray() {
               >
                 <div className="flex-1 rounded-xl [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] px-4 py-3">
                   <div className="text-xs [color:#999999]">Wallet address</div>
-                  <div className="[color:#999999]">{item.address}</div>
+                  <div className="text-xs [color:#999999]">{item.address}</div>
                 </div>
                 <div className="w-40 rounded-xl [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] px-4 py-3">
                   <div className="text-xs [color:#999999]">0.00</div>
-                  <div className="[color:#999999]">ETH</div>
+                  <div className="text-xs [color:#999999]">ETH</div>
                 </div>
                 <Button
                   variant="outline"
