@@ -5,7 +5,7 @@ import { parseEther } from 'viem'
 
 export function useWallet() {
   const { address, isConnected } = useAccount()
-  const { connect, connectors, isLoading: isConnecting } = useConnect()
+  const { connect, connectors, isPending: isConnecting } = useConnect()
   const { disconnect } = useDisconnect()
   const { sendTransaction, isPending: isSending } = useSendTransaction()
 
@@ -13,12 +13,12 @@ export function useWallet() {
     if (!address) return
 
     const transactions = addresses.map(({ address: to, amount }) => ({
-      to,
+      to: to as `0x${string}`,
       value: parseEther(amount),
     }))
 
     for (const tx of transactions) {
-      await sendTransaction(tx)
+      sendTransaction(tx)
     }
   }
 
