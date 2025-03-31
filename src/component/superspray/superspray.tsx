@@ -54,13 +54,13 @@ export function Superspray() {
     try {
       const text = await navigator.clipboard.readText()
       const lines = text.split('\n').filter(line => line.trim())
-      
+
       const newAddresses = lines.map((line, index) => {
         // Try to split by comma first, if not found, split by space
-        const parts = line.includes(',') 
+        const parts = line.includes(',')
           ? line.split(',').map(item => item.trim())
           : line.split(/\s+/).map(item => item.trim())
-        
+
         const [address, amount] = parts
         return {
           id: (index + 1).toString(),
@@ -81,6 +81,13 @@ export function Superspray() {
       return
     }
     await sendBatchTransactions(addresses)
+  }
+
+  const getButtonText = () => {
+    if (isConnecting) return 'Connecting...'
+    if (isSending) return 'Sending...'
+    if (isConnected) return 'Spray!'
+    return 'Connect Wallet'
   }
 
   return (
@@ -174,7 +181,7 @@ export function Superspray() {
             <div className="flex gap-3">
               <Button
                 variant="outline"
-                className="flex items-center gap-2 rounded-xl px-4 py-3 shadow-xs [border:1px_solid_#F1F1F1] cursor-pointer"
+                className="flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 shadow-xs [border:1px_solid_#F1F1F1]"
                 onClick={addNewAddress}
               >
                 <AddIcon />
@@ -182,7 +189,7 @@ export function Superspray() {
               </Button>
               <Button
                 variant="ghost"
-                className="px-4 py-3 underline underline-offset-4 cursor-pointer"
+                className="cursor-pointer px-4 py-3 underline underline-offset-4"
                 onClick={handlePasteFromClipboard}
               >
                 <ClipboardIcon />
@@ -190,7 +197,7 @@ export function Superspray() {
               </Button>
               <Button
                 variant="ghost"
-                className="px-4 py-3 underline underline-offset-4 cursor-pointer"
+                className="cursor-pointer px-4 py-3 underline underline-offset-4"
                 onClick={clearAll}
               >
                 Clear all
@@ -210,13 +217,7 @@ export function Superspray() {
             onClick={handleSpray}
             disabled={isConnecting || isSending}
           >
-            {isConnecting
-              ? 'Connecting...'
-              : isSending
-                ? 'Sending...'
-                : isConnected
-                  ? 'Spray!'
-                  : 'Connect Wallet'}
+            {getButtonText()}
           </Button>
         </div>
       </main>
