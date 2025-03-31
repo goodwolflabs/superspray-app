@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { useWallet } from '@/hooks/useWallet'
 import { Button } from '@/components/ui/button'
 import { ClipboardIcon } from '@/components/icons/clipboard-icon'
+import { ChainIcon } from '@/components/icons/chain-icon'
+import { AddIcon } from '@/components/icons/add-icon'
 
 interface Address {
   id: string
@@ -57,35 +59,13 @@ export function Superspray() {
           <div className="mb-8 flex gap-2">
             <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
-                <svg
-                  width="12"
-                  height="18"
-                  viewBox="0 0 12 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Chain icon</title>
-                  <path d="M6 0L0 9L6 6.75L12 9L6 0Z" fill="white" />
-                  <path d="M6 6.75L0 9L6 12L12 9L6 6.75Z" fill="white" />
-                  <path d="M6 12L0 9L6 18L12 9L6 12Z" fill="white" />
-                </svg>
+                <ChainIcon />
               </div>
               <span>Chain</span>
             </div>
             <div className="flex items-center gap-2 rounded-full [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] px-4 py-2">
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
-                <svg
-                  width="12"
-                  height="18"
-                  viewBox="0 0 12 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Chain icon</title>
-                  <path d="M6 0L0 9L6 6.75L12 9L6 0Z" fill="white" />
-                  <path d="M6 6.75L0 9L6 12L12 9L6 6.75Z" fill="white" />
-                  <path d="M6 12L0 9L6 18L12 9L6 12Z" fill="white" />
-                </svg>
+                <ChainIcon />
               </div>
               <span>ETH</span>
               <ChevronDown className="h-4 w-4" />
@@ -105,41 +85,11 @@ export function Superspray() {
             <h2 className="text-lg font-semibold">Send To</h2>
             <div className="flex gap-2">
               <Button className="flex items-center gap-2 rounded-full [background-color:#FF5079] hover:opacity-90 px-4 py-2 text-white shadow-xs">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Add icon</title>
-                  <path
-                    d="M8 3.5V12.5M3.5 8H12.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <AddIcon />
                 Import CSV
               </Button>
               <Button variant="outline" className="flex items-center gap-2 rounded-full px-4 py-2 text-gray-700 [border:1px_solid_#F1F1F1] shadow-xs">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Export icon</title>
-                  <path
-                    d="M8 3.5V12.5M3.5 8H12.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <AddIcon />
                 Export CSV
               </Button>
             </div>
@@ -180,22 +130,7 @@ export function Superspray() {
                 className="flex items-center gap-2 rounded-xl px-4 py-3 [border:1px_solid_#F1F1F1] shadow-xs"
                 onClick={addNewAddress}
               >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Add new icon</title>
-                  <path
-                    d="M8 3.5V12.5M3.5 8H12.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <AddIcon />
                 Add new
               </Button>
               <Button
