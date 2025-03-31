@@ -92,7 +92,7 @@ export function Superspray() {
           </div>
 
           {/* Address Inputs */}
-          <div className="mb-6 space-y-3">
+          <div className="mb-6 max-h-[300px] overflow-y-auto pr-2 space-y-3">
             {addresses.map((item) => (
               <div
                 key={item.id}
