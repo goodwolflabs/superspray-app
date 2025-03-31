@@ -135,14 +135,14 @@ export function Superspray() {
               </Button>
               <Button
                 variant="ghost"
-                className="px-4 py-3"
+                className="px-4 py-3 underline underline-offset-4"
               >
                 <ClipboardIcon />
                 Paste from Clipboard
               </Button>
               <Button
                 variant="ghost"
-                className="px-4 py-3"
+                className="px-4 py-3 underline underline-offset-4"
                 onClick={clearAll}
               >
                 Clear all

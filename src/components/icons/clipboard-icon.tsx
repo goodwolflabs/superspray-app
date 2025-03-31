@@ -5,23 +5,24 @@ interface IconProps {
 export function ClipboardIcon({ className }: IconProps) {
   return (
     <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      fill="none"
       className={className}
     >
-      <title>Clipboard icon</title>
-      <rect
-        x="3"
-        y="3"
-        width="10"
-        height="10"
-        rx="1"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-    </svg>
+      <path
+        stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15 3.75h3.75a.75.75 0 0 1 .75.75v15.75a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V4.5a.75.75 0 0 1 .75-.75H9"
+    />
+    <path
+      stroke="#000"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M8.25 6.75V6a3.75 3.75 0 0 1 7.5 0v.75h-7.5Z"
+    />
+  </svg>
   )
 } 
