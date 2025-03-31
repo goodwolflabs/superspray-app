@@ -1,1 +1,1 @@
-export { Superspray } from './superspray' 
+export * from './superspray'

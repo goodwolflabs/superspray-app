@@ -10,6 +10,11 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    turbo: {
+      enabled: true
+    }
+  },
   webpack: (config) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
