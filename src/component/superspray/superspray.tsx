@@ -50,6 +50,31 @@ export function Superspray() {
     setAddresses([])
   }
 
+  const handlePasteFromClipboard = async () => {
+    try {
+      const text = await navigator.clipboard.readText()
+      const lines = text.split('\n').filter(line => line.trim())
+      
+      const newAddresses = lines.map((line, index) => {
+        // Try to split by comma first, if not found, split by space
+        const parts = line.includes(',') 
+          ? line.split(',').map(item => item.trim())
+          : line.split(/\s+/).map(item => item.trim())
+        
+        const [address, amount] = parts
+        return {
+          id: (index + 1).toString(),
+          address: address || '0x...',
+          amount: amount || '0.00',
+        }
+      })
+
+      setAddresses(newAddresses)
+    } catch (error) {
+      console.error('Failed to read clipboard:', error)
+    }
+  }
+
   const handleSpray = async () => {
     if (!isConnected) {
       connect({ connector: connectors[0] })
@@ -126,10 +151,10 @@ export function Superspray() {
               <div key={item.id} className="flex gap-3">
                 <div className="flex-1 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
                   <div className="text-xs [color:#999999]">Wallet address</div>
-                  <div className="text-xs [color:#999999]">{item.address}</div>
+                  <div className="text-xs">{item.address}</div>
                 </div>
                 <div className="w-40 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
-                  <div className="text-xs [color:#999999]">0.00</div>
+                  <div className="text-xs">{item.amount}</div>
                   <div className="text-xs [color:#999999]">ETH</div>
                 </div>
                 <Button
@@ -158,6 +183,7 @@ export function Superspray() {
               <Button
                 variant="ghost"
                 className="px-4 py-3 underline underline-offset-4 cursor-pointer"
+                onClick={handlePasteFromClipboard}
               >
                 <ClipboardIcon />
                 Paste from Clipboard
