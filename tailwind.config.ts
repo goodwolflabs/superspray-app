@@ -21,7 +21,7 @@ const config = {
       colors: {
         spray: {
           DEFAULT: '#FF5079',
-          foreground: '#FFFFFF'
+          foreground: '#FFFFFF',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

@@ -22,4 +22,4 @@ export function AddIcon({ className }: IconProps) {
       />
     </svg>
   )
-} 
+}

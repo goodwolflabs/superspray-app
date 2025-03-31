@@ -12,10 +12,10 @@ const nextConfig = {
   },
   experimental: {
     turbo: {
-      enabled: true
-    }
+      enabled: true,
+    },
   },
-  webpack: (config) => {
+  webpack: config => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -27,4 +27,4 @@ const nextConfig = {
   compress: false,
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig

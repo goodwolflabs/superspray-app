@@ -21,15 +21,28 @@ export function Superspray() {
     { id: '3', address: '0x...', amount: '0.00' },
     { id: '4', address: '0x...', amount: '0.00' },
   ])
-  const { isConnected, connect, connectors, isConnecting, sendBatchTransactions, isSending } = useWallet()
+  const {
+    isConnected,
+    connect,
+    connectors,
+    isConnecting,
+    sendBatchTransactions,
+    isSending,
+    openChainModal,
+  } = useWallet()
 
   const removeAddress = (id: string) => {
     setAddresses(addresses.filter(addr => addr.id !== id))
   }
 
   const addNewAddress = () => {
-    const newId = (Math.max(...addresses.map(addr => parseInt(addr.id))) + 1).toString()
-    setAddresses([...addresses, { id: newId, address: '0x...', amount: '0.00' }])
+    const newId = (
+      Math.max(...addresses.map(addr => parseInt(addr.id))) + 1
+    ).toString()
+    setAddresses([
+      ...addresses,
+      { id: newId, address: '0x...', amount: '0.00' },
+    ])
   }
 
   const clearAll = () => {
@@ -54,33 +67,48 @@ export function Superspray() {
           <p className="text-xl text-gray-500">fast, secure, and affordable.</p>
         </div>
 
-        <div className="rounded-3xl border bg-white p-7 shadow-lg border-gray-200">
+        <div className="rounded-3xl border border-gray-200 bg-white p-7 shadow-lg">
           {/* Chain Selector */}
           <div className="mb-4 flex gap-2">
-            <div className='border border-gray-200 rounded-full flex gap-1 p-1'>
-            <div className="flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
-                <ChainIcon />
-              </div>
-              <span>Chain</span>
+            <div className="flex gap-1 rounded-full border border-gray-200 p-1">
+              <button
+                className="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-4 py-2"
+                onClick={openChainModal}
+              >
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
+                  <ChainIcon />
+                </div>
+                <span>Chain</span>
+              </button>
+
+              <button
+                className="flex cursor-pointer items-center gap-2 rounded-full [background-color:#F9F9F9] px-4 py-2 [border:1px_solid_#F1F1F1] hover:bg-gray-50"
+                onClick={openChainModal}
+              >
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
+                  <ChainIcon />
+                </div>
+                <span>ETH</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
             </div>
-            
-            <div className="flex items-center gap-2 rounded-full [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] px-4 py-2">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
-                <ChainIcon />
-              </div>
-              <span>ETH</span>
-              <ChevronDown className="h-4 w-4" />
-            </div></div>
             <div className="ml-auto flex gap-2">
-            <Button className="flex items-center gap-2 rounded-xl [background-color:#FF5079] hover:opacity-90 px-4 py-2 text-white shadow-xs">
+              <Button className="flex items-center gap-2 rounded-xl [background-color:#FF5079] px-4 py-2 text-white shadow-xs hover:opacity-90">
                 <AddIcon />
                 Import CSV
               </Button>
-              <Button variant="outline" size="icon" className="[border:1px_solid_#F1F1F1] shadow-xs rounded-full">
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full shadow-xs [border:1px_solid_#F1F1F1]"
+              >
                 <Clock className="h-5 w-5 text-gray-500" />
               </Button>
-              <Button variant="outline" size="icon" className="[border:1px_solid_#F1F1F1] shadow-xs rounded-full">
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full shadow-xs [border:1px_solid_#F1F1F1]"
+              >
                 <Settings className="h-5 w-5 text-gray-500" />
               </Button>
             </div>
@@ -88,28 +116,25 @@ export function Superspray() {
 
           {/* Send To Section */}
           <div className="mb-2 flex items-center justify-between">
-            <h2 className="text-sm font-semibold ml-1">Send To</h2>
+            <h2 className="ml-1 text-sm">Send To</h2>
           </div>
 
           {/* Address Inputs */}
-          <div className="mb-6 max-h-[300px] overflow-y-auto pr-2 space-y-3">
-            {addresses.map((item) => (
-              <div
-                key={item.id}
-                className="flex gap-3"
-              >
-                <div className="flex-1 rounded-xl [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] px-4 py-3">
+          <div className="mb-6 max-h-[300px] space-y-3 overflow-y-auto pr-2">
+            {addresses.map(item => (
+              <div key={item.id} className="flex gap-3">
+                <div className="flex-1 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
                   <div className="text-xs [color:#999999]">Wallet address</div>
                   <div className="text-xs [color:#999999]">{item.address}</div>
                 </div>
-                <div className="w-40 rounded-xl [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] px-4 py-3">
+                <div className="w-40 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
                   <div className="text-xs [color:#999999]">0.00</div>
                   <div className="text-xs [color:#999999]">ETH</div>
                 </div>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="flex h-10 w-10 items-center justify-center self-center rounded-full [background-color:#F9F9F9] [border:1px_solid_#F1F1F1] shadow-xs"
+                  className="flex h-10 w-10 items-center justify-center self-center rounded-full [background-color:#F9F9F9] shadow-xs [border:1px_solid_#F1F1F1]"
                   onClick={() => removeAddress(item.id)}
                 >
                   <X className="h-5 w-5 text-gray-500" />
@@ -123,7 +148,7 @@ export function Superspray() {
             <div className="flex gap-3">
               <Button
                 variant="outline"
-                className="flex items-center gap-2 rounded-xl px-4 py-3 [border:1px_solid_#F1F1F1] shadow-xs"
+                className="flex items-center gap-2 rounded-xl px-4 py-3 shadow-xs [border:1px_solid_#F1F1F1]"
                 onClick={addNewAddress}
               >
                 <AddIcon />
@@ -154,14 +179,20 @@ export function Superspray() {
 
           {/* Submit Button */}
           <Button
-            className="w-full rounded-xl [background-color:#FF5079] hover:opacity-90 py-4 text-lg font-semibold text-white disabled:opacity-50 shadow-xs"
+            className="w-full rounded-xl [background-color:#FF5079] py-4 text-lg font-semibold text-white shadow-xs hover:opacity-90 disabled:opacity-50"
             onClick={handleSpray}
             disabled={isConnecting || isSending}
           >
-            {isConnecting ? 'Connecting...' : isSending ? 'Sending...' : isConnected ? 'Spray!' : 'Connect Wallet'}
+            {isConnecting
+              ? 'Connecting...'
+              : isSending
+                ? 'Sending...'
+                : isConnected
+                  ? 'Spray!'
+                  : 'Connect Wallet'}
           </Button>
         </div>
       </main>
     </div>
   )
-} 
+}

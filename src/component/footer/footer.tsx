@@ -4,16 +4,24 @@ import Link from 'next/link'
 
 export function Footer() {
   return (
-    <footer className="bg-[url('/image/spray-footer.png')] bg-cover bg-center h-96">
+    <footer className="h-96 bg-[url('/image/spray-footer.png')] bg-cover bg-center">
       <div className="z-10 w-full">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between lg:px-8 sm:px-1">
-            <div className="text-sm text-muted-foreground">© 2024 Superspray</div>
+        <div className="mx-auto max-w-7xl px-4 py-6">
+          <div className="flex items-center justify-between sm:px-1 lg:px-8">
+            <div className="text-muted-foreground text-sm">
+              © 2024 Superspray
+            </div>
             <div className="flex items-center gap-4">
-              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-foreground text-sm"
+              >
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground">
+              <Link
+                href="#"
+                className="text-muted-foreground hover:text-foreground text-sm"
+              >
                 Terms of Service
               </Link>
             </div>
@@ -22,4 +30,4 @@ export function Footer() {
       </div>
     </footer>
   )
-} 
+}

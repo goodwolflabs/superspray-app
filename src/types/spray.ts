@@ -27,4 +27,4 @@ export interface SprayControlsProps {
   onClear: () => void
   onToggleEraser: () => void
   isEraserActive: boolean
-} 
+}

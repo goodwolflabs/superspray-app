@@ -18,4 +18,4 @@ export function ChainIcon({ className }: IconProps) {
       <path d="M6 12L0 9L6 18L12 9L6 12Z" fill="white" />
     </svg>
   )
-} 
+}
