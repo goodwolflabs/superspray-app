@@ -29,6 +29,7 @@ export function Superspray() {
     sendBatchTransactions,
     isSending,
     openChainModal,
+    currentChain,
   } = useWallet()
 
   const removeAddress = (id: string) => {
@@ -78,7 +79,7 @@ export function Superspray() {
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
                   <ChainIcon />
                 </div>
-                <span>Chain</span>
+                <span className="text-sm">{currentChain.name}</span>
               </button>
 
               <button
@@ -88,7 +89,7 @@ export function Superspray() {
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
                   <ChainIcon />
                 </div>
-                <span>ETH</span>
+                <span>{currentChain.name}</span>
                 <ChevronDown className="h-4 w-4" />
               </button>
             </div>
@@ -148,7 +149,7 @@ export function Superspray() {
             <div className="flex gap-3">
               <Button
                 variant="outline"
-                className="flex items-center gap-2 rounded-xl px-4 py-3 shadow-xs [border:1px_solid_#F1F1F1]"
+                className="flex items-center gap-2 rounded-xl px-4 py-3 shadow-xs [border:1px_solid_#F1F1F1] cursor-pointer"
                 onClick={addNewAddress}
               >
                 <AddIcon />
@@ -156,14 +157,14 @@ export function Superspray() {
               </Button>
               <Button
                 variant="ghost"
-                className="px-4 py-3 underline underline-offset-4"
+                className="px-4 py-3 underline underline-offset-4 cursor-pointer"
               >
                 <ClipboardIcon />
                 Paste from Clipboard
               </Button>
               <Button
                 variant="ghost"
-                className="px-4 py-3 underline underline-offset-4"
+                className="px-4 py-3 underline underline-offset-4 cursor-pointer"
                 onClick={clearAll}
               >
                 Clear all

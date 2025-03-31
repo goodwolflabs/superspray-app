@@ -5,9 +5,11 @@ import {
   useConnect,
   useDisconnect,
   useSendTransaction,
+  useChainId,
 } from 'wagmi'
 import { parseEther } from 'viem'
 import { useChainModal } from '@rainbow-me/rainbowkit'
+import { mode, modeTestnet } from 'viem/chains'
 
 export function useWallet() {
   const { address, isConnected } = useAccount()
@@ -15,6 +17,9 @@ export function useWallet() {
   const { disconnect } = useDisconnect()
   const { sendTransaction, isPending: isSending } = useSendTransaction()
   const { openChainModal } = useChainModal()
+  const chainId = useChainId()
+
+  const currentChain = chainId === mode.id ? mode : modeTestnet
 
   const sendBatchTransactions = async (
     addresses: { address: string; amount: string }[]
@@ -41,5 +46,6 @@ export function useWallet() {
     sendBatchTransactions,
     isSending,
     openChainModal,
+    currentChain,
   }
 }
