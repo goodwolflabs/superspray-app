@@ -181,26 +181,34 @@ export function Superspray() {
 
           {/* Coin Selector */}
           {isCoinSelectorOpen && (
-            <div className="absolute right-0 top-16 z-50 w-64 rounded-xl border border-gray-200 bg-white p-2 shadow-lg">
-              <div className="max-h-[300px] space-y-1 overflow-y-auto">
-                {filteredTokens.map((token) => (
-                  <button
-                    key={token.address}
-                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100"
-                    onClick={() => handleCoinSelect(token)}
-                  >
-                    <Image
-                      src={token.icon}
-                      alt={token.symbol}
-                      width={24}
-                      height={24}
-                      className="rounded-full"
-                    />
-                    <span className="text-sm">{token.symbol}</span>
-                  </button>
-                ))}
+            <>
+              {/* Backdrop with blur */}
+              <div className="fixed inset-0 z-40 backdrop-blur-sm bg-black/20" onClick={() => setIsCoinSelectorOpen(false)} />
+              {/* Modal */}
+              <div className="fixed left-1/2 top-1/2 z-50 w-80 -translate-x-1/2 -translate-y-1/2 rounded-xl border border-gray-200 bg-white p-4 shadow-lg">
+                <div className="mb-2 px-2">
+                  <h3 className="text-sm font-medium">Select Token</h3>
+                </div>
+                <div className="max-h-[300px] space-y-1 overflow-y-auto">
+                  {filteredTokens.map((token) => (
+                    <button
+                      key={token.address}
+                      className="flex w-full items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100"
+                      onClick={() => handleCoinSelect(token)}
+                    >
+                      <Image
+                        src={token.icon}
+                        alt={token.symbol}
+                        width={24}
+                        height={24}
+                        className="rounded-full"
+                      />
+                      <span className="text-sm">{token.symbol}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            </>
           )}
 
           {/* Send To Section */}
