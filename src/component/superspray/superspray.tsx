@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button'
 import { ClipboardIcon } from '@/components/icons/clipboard-icon'
 import { ChainIcon } from '@/components/icons/chain-icon'
 import { AddIcon } from '@/components/icons/add-icon'
+import { officialTokenByChain } from '@/constants/official-tokens'
+import Image from 'next/image'
 
 interface Address {
   id: string
@@ -21,6 +23,8 @@ export function Superspray() {
     { id: '3', address: '0x...', amount: '0.00' },
     { id: '4', address: '0x...', amount: '0.00' },
   ])
+  const [isCoinSelectorOpen, setIsCoinSelectorOpen] = useState(false)
+  const [selectedToken, setSelectedToken] = useState(officialTokenByChain[0])
   const {
     isConnected,
     connect,
@@ -31,6 +35,15 @@ export function Superspray() {
     openChainModal,
     currentChain,
   } = useWallet()
+
+  const filteredTokens = officialTokenByChain.filter(
+    token => token.chainId === currentChain.id
+  )
+
+  const handleCoinSelect = (token: typeof officialTokenByChain[0]) => {
+    setSelectedToken(token)
+    setIsCoinSelectorOpen(false)
+  }
 
   const removeAddress = (id: string) => {
     setAddresses(addresses.filter(addr => addr.id !== id))
@@ -75,6 +88,12 @@ export function Superspray() {
     }
   }
 
+  const updateAmount = (id: string, newAmount: string) => {
+    setAddresses(addresses.map(addr => 
+      addr.id === id ? { ...addr, amount: newAmount } : addr
+    ))
+  }
+
   const handleSpray = async () => {
     if (!isConnected) {
       connect({ connector: connectors[0] })
@@ -88,6 +107,13 @@ export function Superspray() {
     if (isSending) return 'Sending...'
     if (isConnected) return 'Spray!'
     return 'Connect Wallet'
+  }
+
+  const calculateTotal = () => {
+    return addresses.reduce((total, item) => {
+      const amount = parseFloat(item.amount) || 0
+      return total + amount
+    }, 0).toFixed(4)
   }
 
   return (
@@ -116,12 +142,18 @@ export function Superspray() {
 
               <button
                 className="flex cursor-pointer items-center gap-2 rounded-full [background-color:#F9F9F9] px-4 py-2 [border:1px_solid_#F1F1F1] hover:bg-gray-50"
-                onClick={openChainModal}
+                onClick={() => setIsCoinSelectorOpen(!isCoinSelectorOpen)}
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
-                  <ChainIcon />
+                <div className="flex h-6 w-6 items-center justify-center rounded-full">
+                  <Image
+                    src={selectedToken.icon}
+                    alt={selectedToken.symbol}
+                    width={24}
+                    height={24}
+                    className="rounded-full"
+                  />
                 </div>
-                <span>{currentChain.name}</span>
+                <span>{selectedToken.symbol}</span>
                 <ChevronDown className="h-4 w-4" />
               </button>
             </div>
@@ -147,6 +179,30 @@ export function Superspray() {
             </div>
           </div>
 
+          {/* Coin Selector */}
+          {isCoinSelectorOpen && (
+            <div className="absolute right-0 top-16 z-50 w-64 rounded-xl border border-gray-200 bg-white p-2 shadow-lg">
+              <div className="max-h-[300px] space-y-1 overflow-y-auto">
+                {filteredTokens.map((token) => (
+                  <button
+                    key={token.address}
+                    className="flex w-full items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100"
+                    onClick={() => handleCoinSelect(token)}
+                  >
+                    <Image
+                      src={token.icon}
+                      alt={token.symbol}
+                      width={24}
+                      height={24}
+                      className="rounded-full"
+                    />
+                    <span className="text-sm">{token.symbol}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Send To Section */}
           <div className="mb-2 flex items-center justify-between">
             <h2 className="ml-1 text-sm">Send To</h2>
@@ -161,7 +217,14 @@ export function Superspray() {
                   <div className="text-xs">{item.address}</div>
                 </div>
                 <div className="w-40 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
-                  <div className="text-xs">{item.amount}</div>
+                  <input
+                    type="number"
+                    step="0.0001"
+                    min="0"
+                    value={item.amount}
+                    onChange={(e) => updateAmount(item.id, e.target.value)}
+                    className="w-full bg-transparent text-xs outline-none"
+                  />
                   <div className="text-xs [color:#999999]">ETH</div>
                 </div>
                 <Button
@@ -204,7 +267,7 @@ export function Superspray() {
               </Button>
             </div>
             <div className="text-right">
-              <div className="text-xl font-bold">Total: 12.58 ETH</div>
+              <div className="text-xl font-bold">Total: {calculateTotal()} ETH</div>
               <div className="text-sm text-gray-500">
                 Gas fee: 0.0000254 ETH
               </div>
