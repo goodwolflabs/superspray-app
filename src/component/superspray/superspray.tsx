@@ -247,7 +247,7 @@ export function Superspray() {
             {/* Address Inputs */}
             <div className="mb-6 max-h-[300px] space-y-3 overflow-y-auto pr-2">
               {addresses.map((address, index) => (
-                <div key={`tx-${index}`} className="flex gap-3">
+                <div key={`${address}-${index}`} className="flex gap-3">
                   <div className="flex-1 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
                     <div className="text-xs [color:#999999]">
                       Wallet address
