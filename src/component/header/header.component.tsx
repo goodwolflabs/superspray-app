@@ -28,9 +28,9 @@ export function Header() {
           className="flex h-10 w-10 items-center justify-center rounded-full bg-inherit transition-colors hover:bg-gray-200/50 dark:hover:bg-dark-200/50"
         >
           {theme === 'dark' ? (
-            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 transition-all text-white" />
+            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 text-white transition-all" />
           ) : (
-            <Moon className="h-[1.2rem] w-[1.2rem] scale-100 transition-all text-dark-300" />
+            <Moon className="h-[1.2rem] w-[1.2rem] scale-100 text-dark-300 transition-all" />
           )}
         </button>
         {/* <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">

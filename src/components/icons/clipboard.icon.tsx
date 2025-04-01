@@ -4,12 +4,7 @@ interface IconProps {
 
 export function ClipboardIcon({ className }: IconProps) {
   return (
-    <svg
-      width={24}
-      height={24}
-      fill="none"
-      className={className}
-    >
+    <svg width={24} height={24} fill="none" className={className}>
       <path
         stroke="#000"
         strokeLinecap="round"

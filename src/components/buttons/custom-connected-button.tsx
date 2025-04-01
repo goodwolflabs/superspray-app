@@ -36,7 +36,7 @@ export const CustomConnectedButton = () => {
                   <button
                     onClick={openConnectModal}
                     type="button"
-                    className="shadow-xs cursor-pointer rounded-xl px-4 py-1 font-semibold text-white bg-spray-red hover:opacity-90 disabled:opacity-50"
+                    className="shadow-xs cursor-pointer rounded-xl bg-spray-red px-4 py-1 font-semibold text-white hover:opacity-90 disabled:opacity-50"
                   >
                     Connect Wallet
                   </button>
