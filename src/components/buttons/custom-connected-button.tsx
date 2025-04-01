@@ -1,5 +1,5 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import Image from 'next/image';
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import Image from 'next/image'
 
 export const CustomConnectedButton = () => {
   return (
@@ -13,19 +13,17 @@ export const CustomConnectedButton = () => {
         authenticationStatus,
         mounted,
       }) => {
-    
-        const ready = mounted && authenticationStatus !== 'loading';
+        const ready = mounted && authenticationStatus !== 'loading'
         const connected =
           ready &&
           account &&
           chain &&
-          (!authenticationStatus ||
-            authenticationStatus === 'authenticated');
+          (!authenticationStatus || authenticationStatus === 'authenticated')
         return (
           <div
             {...(!ready && {
               'aria-hidden': true,
-              'style': {
+              style: {
                 opacity: 0,
                 pointerEvents: 'none',
                 userSelect: 'none',
@@ -35,17 +33,21 @@ export const CustomConnectedButton = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button" className="cursor-pointer rounded-xl [background-color:#FF5079] py-1 px-4 font-semibold text-white shadow-xs hover:opacity-90 disabled:opacity-50">
+                  <button
+                    onClick={openConnectModal}
+                    type="button"
+                    className="cursor-pointer rounded-xl [background-color:#FF5079] px-4 py-1 font-semibold text-white shadow-xs hover:opacity-90 disabled:opacity-50"
+                  >
                     Connect Wallet
                   </button>
-                );
+                )
               }
               if (chain.unsupported) {
                 return (
                   <button onClick={openChainModal} type="button">
                     Wrong network
                   </button>
-                );
+                )
               }
               return (
                 <div style={{ display: 'flex', gap: 12 }}>
@@ -84,11 +86,11 @@ export const CustomConnectedButton = () => {
                       : ''}
                   </button>
                 </div>
-              );
+              )
             })()}
           </div>
-        );
+        )
       }}
     </ConnectButton.Custom>
-  );
-};
+  )
+}

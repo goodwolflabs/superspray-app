@@ -21,7 +21,7 @@ export function CustomConnectButton() {
       <Button
         variant="ghost"
         size="icon"
-        className="h-8 w-8 rounded-full"
+        className="h-8 w-8 cursor-pointer rounded-full"
         onClick={() => disconnect()}
       >
         <Image

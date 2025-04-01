@@ -1,9 +1,9 @@
 'use client'
 
-import { Bell, Moon, Sun } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import Image from 'next/image'
 import { useTheme } from '@/hooks/useTheme'
-import { CustomConnectButton } from '../../components/buttons/custom-connect-button'
+import { CustomConnectButton } from '@/components/buttons'
 
 export function Header() {
   const { theme, toggleTheme } = useTheme()
@@ -33,9 +33,9 @@ export function Header() {
             <Moon className="h-5 w-5 text-gray-500" />
           )}
         </button>
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+        {/* <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
           <Bell className="h-5 w-5 text-gray-500" />
-        </div>
+        </div> */}
         <CustomConnectButton />
       </div>
     </header>
