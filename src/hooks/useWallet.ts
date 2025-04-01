@@ -6,10 +6,11 @@ import {
   useDisconnect,
   useChainId,
   useWriteContract,
+  useEstimateMaxPriorityFeePerGas,
 } from 'wagmi'
 import { parseEther } from 'viem'
 import { useChainModal } from '@rainbow-me/rainbowkit'
-import { getSprayContract } from '@/contract'
+import { getSprayContract } from '@/contract/spray.abi'
 import { erc20Abi, type Address } from 'viem'
 import { useState } from 'react'
 import { mode, modeTestnet } from 'viem/chains'
@@ -30,6 +31,10 @@ export function useWallet() {
   const { writeContractAsync: writeSprayContract } = useWriteContract()
 
   const { writeContractAsync: writeTokenContract } = useWriteContract()
+
+  const { data: maxPriorityFeePerGas } = useEstimateMaxPriorityFeePerGas({
+    chainId: currentChain.id,
+  })
 
   const sprayEther = async (
     transactions: { address: string; amount: string }[]
@@ -143,5 +148,6 @@ export function useWallet() {
     currentChain,
     sprayEther,
     sprayToken,
+    maxPriorityFeePerGas,
   }
 }

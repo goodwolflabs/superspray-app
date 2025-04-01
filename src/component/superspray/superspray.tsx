@@ -22,6 +22,7 @@ export function Superspray() {
     currentChain,
     sprayEther,
     sprayToken,
+    maxPriorityFeePerGas,
   } = useWallet()
 
   const filteredTokens = officialTokenByChain.filter(
@@ -311,7 +312,10 @@ export function Superspray() {
                   Total: {calculateTotal()} {selectedToken.symbol}
                 </div>
                 <div className="text-sm text-gray-500">
-                  Gas fee: 0.0000254 ETH
+                  Gas fee:{' '}
+                  {maxPriorityFeePerGas
+                    ? `${(Number(maxPriorityFeePerGas) / 1e9).toFixed(6)} Gwei`
+                    : 'Calculating...'}
                 </div>
               </div>
             </div>
