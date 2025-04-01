@@ -1,4 +1,4 @@
-import { useWriteContract , useChainId} from 'wagmi'
+import { useWriteContract, useChainId } from 'wagmi'
 import { parseEther } from 'ethers'
 import { getSprayContract } from '@/contract/spray.abi'
 import { erc20Abi } from 'viem'
@@ -10,21 +10,23 @@ interface SprayTransaction {
 
 export function useSpray() {
   const chainId = useChainId() ?? 919
-  
+
   const sprayContract = getSprayContract(chainId)
-  
+
   const { writeContract: writeDisperseEther } = useWriteContract()
   const { writeContract: writeDisperseToken } = useWriteContract()
   const { writeContract: writeApproveToken } = useWriteContract()
 
   const sprayEther = async (transactions: SprayTransaction[]) => {
-    if (!sprayContract) throw new Error(`Contract not found for chain ${chainId}`)
-    
+    if (!sprayContract)
+      throw new Error(`Contract not found for chain ${chainId}`)
+
     const addresses = transactions.map(tx => tx.address as `0x${string}`)
     const amounts = transactions.map(tx => parseEther(tx.amount))
     const totalAmount = amounts.reduce((a, b) => a + b, BigInt(0))
+    console.log({ amounts, addresses, totalAmount })
 
-    return writeDisperseEther({
+    return await writeDisperseEther({
       address: sprayContract.address as `0x${string}`,
       abi: sprayContract.abi,
       functionName: 'disperseEther',
@@ -37,14 +39,15 @@ export function useSpray() {
     tokenAddress: `0x${string}`,
     transactions: SprayTransaction[]
   ) => {
-    if (!sprayContract) throw new Error(`Contract not found for chain ${chainId}`)
-    
+    if (!sprayContract)
+      throw new Error(`Contract not found for chain ${chainId}`)
+
     const addresses = transactions.map(tx => tx.address as `0x${string}`)
     const amounts = transactions.map(tx => parseEther(tx.amount))
     const totalAmount = amounts.reduce((a, b) => a + b, BigInt(0))
 
     // First approve the spray contract
-    await writeApproveToken({
+    writeApproveToken({
       address: tokenAddress,
       abi: erc20Abi,
       functionName: 'approve',
@@ -64,4 +67,4 @@ export function useSpray() {
     sprayEther,
     sprayToken,
   }
-} 
+}

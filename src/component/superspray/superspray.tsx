@@ -9,7 +9,7 @@ import { ChainIcon } from '@/components/icons/chain-icon'
 import { AddIcon } from '@/components/icons/add-icon'
 import { officialTokenByChain } from '@/constants/official-tokens'
 import Image from 'next/image'
-import { useSpray } from '@/hooks/useSpray'
+import { type Address } from 'viem'
 
 export function Superspray() {
   const [addresses, setAddresses] = useState<string[]>([])
@@ -22,11 +22,12 @@ export function Superspray() {
     isSending,
     openChainModal,
     currentChain,
+    sprayEther,
+    sprayToken,
   } = useWallet()
-  const { sprayEther, sprayToken } = useSpray()
 
   const filteredTokens = officialTokenByChain.filter(
-    token => token.chainId === currentChain.id
+    token => token.chainId === currentChain?.id
   )
 
   const handleCoinSelect = (token: (typeof officialTokenByChain)[0]) => {
@@ -34,19 +35,24 @@ export function Superspray() {
     setIsCoinSelectorOpen(false)
   }
 
-  const removeAddress = (id: string) => {
-    setAddresses(addresses.filter(addr => addr !== id))
+  const removeAddress = (index: number) => {
+    const newAddresses = [...addresses]
+    const newAmounts = [...amounts]
+    newAddresses.splice(index, 1)
+    newAmounts.splice(index, 1)
+    setAddresses(newAddresses)
+    setAmounts(newAmounts)
   }
 
   const addNewAddress = () => {
-    const newId = (
-      Math.max(...addresses.map(addr => parseInt(addr))) + 1
-    ).toString()
-    setAddresses([...addresses, newId])
+    // Generar una dirección vacía con formato 0x...
+    setAddresses([...addresses, '0x...'])
+    setAmounts([...amounts, '0'])
   }
 
   const clearAll = () => {
     setAddresses([])
+    setAmounts([])
   }
 
   const handlePasteFromClipboard = async () => {
@@ -86,36 +92,59 @@ export function Superspray() {
   }
 
   const calculateTotal = () => {
-    return addresses
-      .reduce((total, item) => {
-        const amount = parseFloat(item) || 0
-        return total + amount
+    return amounts
+      .reduce((total, amount) => {
+        const value = parseFloat(amount) || 0
+        return total + value
       }, 0)
       .toFixed(4)
   }
 
   const handleSpray = async () => {
-    if (!isConnected) return
+    // Filtramos transacciones vacías o inválidas
+    const transactions = addresses
+      .map((address, index) => ({
+        address,
+        amount: amounts[index] || '0',
+      }))
+      .filter(
+        tx =>
+          tx.address &&
+          tx.address.startsWith('0x') &&
+          tx.address !== '0x...' &&
+          parseFloat(tx.amount) > 0
+      )
 
-    const transactions = addresses.map((address, index) => ({
-      address,
-      amount: amounts[index] || '0',
-    }))
+    if (transactions.length === 0) {
+      alert('Please add valid addresses and amounts')
+      return
+    }
 
     try {
-      if (selectedToken.address === '0x0000000000000000000000000000000000000000') {
+      if (
+        selectedToken.address === '0x0000000000000000000000000000000000000000'
+      ) {
         await sprayEther(transactions)
       } else {
-        await sprayToken(selectedToken.address as `0x${string}`, transactions)
+        await sprayToken(selectedToken.address as Address, transactions)
       }
+
+      // Mostrar un mensaje de éxito
+      alert('Spray completed successfully!')
+
+      // Opcional: limpiar los campos después de un spray exitoso
+      // clearAll();
     } catch (error) {
       console.error('Spray failed:', error)
+      alert(
+        'Spray failed: ' +
+          (error instanceof Error ? error.message : 'Unknown error')
+      )
     }
   }
 
   return (
     <div className="flex flex-col gap-4 p-4">
-
       <div className="min-h-screen bg-white font-sans">
         <main className="mx-auto max-w-5xl px-4 py-8">
           <div className="mb-10 text-center">
@@ -138,7 +167,9 @@ export function Superspray() {
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
                     <ChainIcon />
                   </div>
-                  <span className="text-sm">{currentChain.name}</span>
+                  <span className="text-sm">
+                    {currentChain?.name || 'Select Chain'}
+                  </span>
                 </button>
 
                 <button
@@ -184,7 +215,7 @@ export function Superspray() {
             {isCoinSelectorOpen && (
               <>
                 {/* Backdrop with blur */}
-                <div
+                <button
                   className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
                   onClick={() => setIsCoinSelectorOpen(false)}
                 />
@@ -222,30 +253,32 @@ export function Superspray() {
 
             {/* Address Inputs */}
             <div className="mb-6 max-h-[300px] space-y-3 overflow-y-auto pr-2">
-              {addresses.map(item => (
-                <div key={item} className="flex gap-3">
+              {addresses.map((address, index) => (
+                <div key={`tx-${index}`} className="flex gap-3">
                   <div className="flex-1 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
                     <div className="text-xs [color:#999999]">
                       Wallet address
                     </div>
-                    <div className="text-xs">{item}</div>
+                    <div className="text-xs">{address}</div>
                   </div>
                   <div className="w-40 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
                     <input
                       type="number"
                       step="0.0001"
                       min="0"
-                      value={item}
-                      onChange={e => updateAmount(parseInt(item), e.target.value)}
+                      value={amounts[index] || ''}
+                      onChange={e => updateAmount(index, e.target.value)}
                       className="w-full bg-transparent text-xs outline-none"
                     />
-                    <div className="text-xs [color:#999999]">ETH</div>
+                    <div className="text-xs [color:#999999]">
+                      {selectedToken.symbol}
+                    </div>
                   </div>
                   <Button
                     variant="outline"
                     size="icon"
                     className="flex h-10 w-10 items-center justify-center self-center rounded-full [background-color:#F9F9F9] shadow-xs [border:1px_solid_#F1F1F1]"
-                    onClick={() => removeAddress(item)}
+                    onClick={() => removeAddress(index)}
                   >
                     <X className="h-5 w-5 text-gray-500" />
                   </Button>
@@ -282,7 +315,7 @@ export function Superspray() {
               </div>
               <div className="text-right">
                 <div className="text-xl font-bold">
-                  Total: {calculateTotal()} ETH
+                  Total: {calculateTotal()} {selectedToken.symbol}
                 </div>
                 <div className="text-sm text-gray-500">
                   Gas fee: 0.0000254 ETH
@@ -292,7 +325,7 @@ export function Superspray() {
 
             {/* Submit Button */}
             <Button
-              className="w-full rounded-xl [background-color:#FF5079] py-4 text-lg font-semibold text-white shadow-xs hover:opacity-90 disabled:opacity-50"
+              className="w-full cursor-pointer rounded-xl [background-color:#FF5079] py-4 text-lg font-semibold text-white shadow-xs hover:opacity-90 disabled:opacity-50"
               onClick={handleSpray}
               disabled={isConnecting || isSending}
             >

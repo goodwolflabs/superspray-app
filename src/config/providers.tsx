@@ -7,7 +7,7 @@ import {
   lightTheme,
 } from '@rainbow-me/rainbowkit'
 import { WagmiProvider } from 'wagmi'
-import { config } from './wagmi'
+import { config } from '@/lib/wagmi'
 import { useTheme } from '@/hooks/useTheme'
 import { useEffect, useState } from 'react'
 

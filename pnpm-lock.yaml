@@ -22,12 +22,18 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.71.0
         version: 5.71.0(react@19.1.0)
+      '@wagmi/core':
+        specifier: ^2.16.7
+        version: 2.16.7(@tanstack/query-core@5.71.0)(@types/react@19.0.12)(react@19.1.0)(typescript@5.8.2)(use-sync-external-store@1.4.0(react@19.1.0))(viem@2.24.2(bufferutil@4.0.9)(typescript@5.8.2)(utf-8-validate@5.0.10))
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      connectors:
+        specifier: link:@wagmi/core/connectors
+        version: link:@wagmi/core/connectors
       ethers:
         specifier: ^6.13.5
         version: 6.13.5(bufferutil@4.0.9)(utf-8-validate@5.0.10)

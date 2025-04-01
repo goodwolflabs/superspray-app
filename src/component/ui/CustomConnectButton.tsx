@@ -18,7 +18,7 @@ export function CustomConnectButton() {
 
   return (
     <div className="flex items-center gap-2">
-       <Button
+      <Button
         variant="ghost"
         size="icon"
         className="h-8 w-8 rounded-full"
@@ -43,7 +43,6 @@ export function CustomConnectButton() {
           {formatAddress(address)}
         </span>
       </div>
-     
     </div>
   )
 }

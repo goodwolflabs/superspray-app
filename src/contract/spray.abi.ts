@@ -1,10 +1,4 @@
-
 const MODESPRAY_ABI = [
-  {
-    inputs: [{ internalType: 'address', name: 'initialOwner', type: 'address' }],
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-  },
   {
     inputs: [
       { internalType: 'address[]', name: 'recipients', type: 'address[]' },
@@ -26,48 +20,23 @@ const MODESPRAY_ABI = [
     stateMutability: 'nonpayable',
     type: 'function',
   },
-  {
-    inputs: [],
-    name: 'owner',
-    outputs: [{ internalType: 'address', name: '', type: 'address' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
-  {
-    inputs: [],
-    name: 'renounceOwnership',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [{ internalType: 'address', name: 'newOwner', type: 'address' }],
-    name: 'transferOwnership',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-] as const;
+] as const
 
 // Direcciones del contrato por cadena
 const CONTRACT_ADDRESSES = {
-  // Ethereum
-  1: '0x7731F8D7B0DaC6C09c1B713C9A608e7854B0F7F5',
-  // Mode Testnet
-  919: '0x7731F8D7B0DaC6C09c1B713C9A608e7854B0F7F5',
-  // Mode Mainnet
-  34443: '0x7731F8D7B0DaC6C09c1B713C9A608e7854B0F7F5',
+  // Mode Mainnet (id: 919)
+  919: '0xDBA7D42BAC31Fa58A6Ab7ffE95D9FfA4bD398A0f',
+  // Mode Testnet (id: 34443)
+  34443: '0x669Fa5586E6508dFde75a1a7CDe89f44D32d8A2A',
   // Base Sepolia
-  84532: '0x7731F8D7B0DaC6C09c1B713C9A608e7854B0F7F5',
+  84532: '0x70E7BdDAa87512121f969e55d432bE40973eA3E8',
   // Base Mainnet
-  8453: '0x7731F8D7B0DaC6C09c1B713C9A608e7854B0F7F5',
+  8453: '0x8EbA7AD6A31df00D399E540356d3Ca4b27950124',
   // Optimism Sepolia
-  11155420: '0x7731F8D7B0DaC6C09c1B713C9A608e7854B0F7F5',
+  11155420: '0x8EbA7AD6A31df00D399E540356d3Ca4b27950124',
   // Optimism Mainnet
-  10: '0x7731F8D7B0DaC6C09c1B713C9A608e7854B0F7F5',
-  // Hardhat/Local
-  31337: '0xDBA7D42BAC31Fa58A6Ab7ffE95D9FfA4bD398A0f',
-} as const;
+  10: '0x3A4e09Fd6F3B33A84eeFa66FC222D6dD7185eBeC',
+} as const
 
 // Exportamos una estructura unificada que facilita el acceso a contratos por cadena
 export const SPRAY_CONTRACTS_ABI = Object.entries(CONTRACT_ADDRESSES).reduce(
@@ -81,9 +50,13 @@ export const SPRAY_CONTRACTS_ABI = Object.entries(CONTRACT_ADDRESSES).reduce(
     },
   }),
   {}
-) as Record<keyof typeof CONTRACT_ADDRESSES, { ModeSpray: { address: string; abi: typeof MODESPRAY_ABI } }>;
+) as Record<
+  keyof typeof CONTRACT_ADDRESSES,
+  { ModeSpray: { address: string; abi: typeof MODESPRAY_ABI } }
+>
 
 // Función de ayuda para obtener el contrato por chainId
 export function getSprayContract(chainId: number) {
-  return SPRAY_CONTRACTS_ABI[chainId as keyof typeof CONTRACT_ADDRESSES]?.ModeSpray;
+  return SPRAY_CONTRACTS_ABI[chainId as keyof typeof CONTRACT_ADDRESSES]
+    ?.ModeSpray
 }
