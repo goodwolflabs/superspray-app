@@ -11,7 +11,11 @@ export function useTheme() {
     const savedTheme = localStorage.getItem('theme') as Theme
     if (savedTheme) {
       setTheme(savedTheme)
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     }
   }, [])
 
@@ -19,7 +23,12 @@ export function useTheme() {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.toggle('dark', newTheme === 'dark')
+
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
   }
 
   return { theme, toggleTheme }

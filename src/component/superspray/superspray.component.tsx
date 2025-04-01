@@ -138,24 +138,24 @@ export function Superspray() {
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4">
-      <div className="min-h-screen bg-white font-sans">
+    <div className="flex flex-col gap-4 p-4 dark:bg-gray-950">
+      <div className="min-h-screen font-sans">
         <main className="mx-auto max-w-5xl px-4 py-8">
           <div className="mb-10 text-center">
-            <h1 className="mb-2 text-4xl font-bold">
+            <h1 className="mb-2 text-4xl font-bold dark:text-white">
               Batch transfer tokens seamlessly
             </h1>
-            <p className="text-xl text-gray-500">
+            <p className="text-xl text-gray-500 dark:text-gray-400">
               fast, secure, and affordable.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-gray-200 bg-white p-7 shadow-lg">
+          <div className="rounded-3xl border border-gray-200 dark:border-gray-800 p-7 shadow-lg bg-white dark:bg-gray-900">
             {/* Chain Selector */}
             <div className="mb-4 flex gap-2">
               <div className="flex gap-1 rounded-full border border-gray-200 p-1">
                 <button
-                  className="flex cursor-pointer items-center gap-2 rounded-full bg-gray-100 px-4 py-2"
+                  className="flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 shadow-xs border border-gray-100 dark:border-gray-800"
                   onClick={openChainModal}
                 >
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500">
@@ -167,7 +167,7 @@ export function Superspray() {
                 </button>
 
                 <button
-                  className="flex cursor-pointer items-center gap-2 rounded-full [background-color:#F9F9F9] px-4 py-2 [border:1px_solid_#F1F1F1] hover:bg-gray-50"
+                  className="flex cursor-pointer items-center gap-2 rounded-full px-4 py-2 border border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800"
                   onClick={() => setIsCoinSelectorOpen(!isCoinSelectorOpen)}
                 >
                   <div className="flex h-6 w-6 items-center justify-center rounded-full">
@@ -184,7 +184,7 @@ export function Superspray() {
                 </button>
               </div>
               <div className="ml-auto flex gap-2">
-                <Button className="flex items-center gap-2 rounded-xl [background-color:#FF5079] px-4 py-2 text-white shadow-xs hover:opacity-90">
+                <Button className="flex items-center gap-2 rounded-xl bg-spray px-4 py-2 text-white shadow-xs hover:opacity-90">
                   <AddIcon />
                   Import CSV
                 </Button>
@@ -214,15 +214,15 @@ export function Superspray() {
                   onClick={() => setIsCoinSelectorOpen(false)}
                 />
                 {/* Modal */}
-                <div className="fixed top-1/2 left-1/2 z-50 w-80 -translate-x-1/2 -translate-y-1/2 rounded-xl border border-gray-200 bg-white p-4 shadow-lg">
+                <div className="fixed top-1/2 left-1/2 z-50 w-80 -translate-x-1/2 -translate-y-1/2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4 shadow-lg">
                   <div className="mb-2 px-2">
-                    <h3 className="text-sm font-medium">Select Token</h3>
+                    <h3 className="text-sm font-medium dark:text-white">Select Token</h3>
                   </div>
                   <div className="max-h-[300px] space-y-1 overflow-y-auto">
                     {filteredTokens.map(token => (
                       <button
                         key={token.address}
-                        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100"
+                        className="flex w-full items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
                         onClick={() => handleCoinSelect(token)}
                       >
                         <Image
@@ -232,7 +232,7 @@ export function Superspray() {
                           height={24}
                           className="rounded-full"
                         />
-                        <span className="text-sm">{token.symbol}</span>
+                        <span className="text-sm dark:text-white">{token.symbol}</span>
                       </button>
                     ))}
                   </div>
@@ -242,20 +242,20 @@ export function Superspray() {
 
             {/* Send To Section */}
             <div className="mb-2 flex items-center justify-between">
-              <h2 className="ml-1 text-sm">Send To</h2>
+              <h2 className="ml-1 text-sm dark:text-white">Send To</h2>
             </div>
 
             {/* Address Inputs */}
             <div className="mb-6 max-h-[300px] space-y-3 overflow-y-auto pr-2">
               {addresses.map((address, index) => (
                 <div key={`${address}-${index}`} className="flex gap-3">
-                  <div className="flex-1 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
-                    <div className="text-xs [color:#999999]">
+                  <div className="flex-1 rounded-xl bg-gray-50 dark:bg-gray-900 px-4 py-3 border border-gray-100 dark:border-gray-800">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       Wallet address
                     </div>
                     <div className="text-xs">{address}</div>
                   </div>
-                  <div className="w-40 rounded-xl [background-color:#F9F9F9] px-4 py-3 [border:1px_solid_#F1F1F1]">
+                  <div className="w-40 rounded-xl bg-gray-50 dark:bg-gray-900 px-4 py-3 border border-gray-100 dark:border-gray-800">
                     <input
                       type="number"
                       step="0.0001"
@@ -264,14 +264,14 @@ export function Superspray() {
                       onChange={e => updateAmount(index, e.target.value)}
                       className="w-full bg-transparent text-xs outline-none"
                     />
-                    <div className="text-xs [color:#999999]">
+                    <div className="text-xs text-gray-500 dark:text-gray-400">
                       {selectedToken.symbol}
                     </div>
                   </div>
                   <Button
                     variant="outline"
                     size="icon"
-                    className="flex h-10 w-10 items-center justify-center self-center rounded-full [background-color:#F9F9F9] shadow-xs [border:1px_solid_#F1F1F1]"
+                    className="flex h-10 w-10 items-center justify-center self-center rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 shadow-xs"
                     onClick={() => removeAddress(index)}
                   >
                     <X className="h-5 w-5 text-gray-500" />
@@ -293,7 +293,7 @@ export function Superspray() {
                 </Button> */}
                 <Button
                   variant="ghost"
-                  className="cursor-pointer px-4 py-3 underline underline-offset-4"
+                  className="cursor-pointer px-4 py-3 underline underline-offset-4 dark:text-white"
                   onClick={handlePasteFromClipboard}
                 >
                   <ClipboardIcon />
@@ -301,17 +301,17 @@ export function Superspray() {
                 </Button>
                 <Button
                   variant="ghost"
-                  className="cursor-pointer px-4 py-3 underline underline-offset-4"
+                  className="cursor-pointer px-4 py-3 underline underline-offset-4 dark:text-white"
                   onClick={clearAll}
                 >
                   Clear all
                 </Button>
               </div>
               <div className="text-right">
-                <div className="text-xl font-bold">
+                <div className="text-xl font-bold dark:text-white">
                   Total: {calculateTotal()} {selectedToken.symbol}
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-gray-500 dark:text-gray-400">
                   Gas fee:{' '}
                   {maxPriorityFeePerGas
                     ? `${(Number(maxPriorityFeePerGas) / 1e9).toFixed(6)} Gwei`
@@ -322,7 +322,7 @@ export function Superspray() {
 
             {/* Submit Button */}
             <Button
-              className="w-full cursor-pointer rounded-xl [background-color:#FF5079] py-4 text-lg font-semibold text-white shadow-xs hover:opacity-90 disabled:opacity-50"
+              className="w-full cursor-pointer rounded-xl bg-spray py-4 text-lg font-semibold text-white shadow-xs hover:opacity-90 disabled:opacity-50"
               onClick={handleSpray}
               disabled={isConnecting || isSending}
             >
