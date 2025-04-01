@@ -18,8 +18,24 @@ const config: Config = {
     },
     extend: {
       colors: {
-        spray: {
+        dark: {
+          100: '#242424',
+          200: '#141414',
+          300: '#010101',
+        },
+        'spray-red': {
           DEFAULT: '#FF5079',
+          50: '#FFF5F8',
+          100: '#FFE5EC',
+          200: '#FFB8CD',
+          300: '#FF8AAE',
+          400: '#FF5D8F',
+          500: '#FF5079', // Base color
+          600: '#FF1F55',
+          700: '#ED0040',
+          800: '#B50031',
+          900: '#7D0022',
+          950: '#61001A',
           foreground: '#FFFFFF',
         },
         border: 'hsl(var(--border))',
