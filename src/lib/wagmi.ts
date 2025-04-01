@@ -48,7 +48,7 @@ export const config = createConfig({
     }),
   ],
   transports: {
-    [modeChain.id]: http('https://mainnet.mode.network'),
-    [modeTestnet.id]: http('https://sepolia.mode.network'),
+    [modeChain.id]: http(),
+    [modeTestnet.id]: http(),
   },
 })

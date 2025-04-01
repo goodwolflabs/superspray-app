@@ -39,7 +39,7 @@ export function CustomConnectButton() {
             : '0.0000'}{' '}
           {balance?.symbol}
         </span>
-        <span className="text-muted-foreground text-xs">
+        <span className="text-xs text-muted-foreground">
           {formatAddress(address)}
         </span>
       </div>
