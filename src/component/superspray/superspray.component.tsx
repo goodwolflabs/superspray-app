@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronDown, Clock, Settings, X } from 'lucide-react'
+import { ChevronDown, X } from 'lucide-react'
 import { useState } from 'react'
 import { useWallet } from '@/hooks/useWallet'
 import { Button } from '@/components/ui/button'
@@ -43,10 +43,10 @@ export function Superspray() {
     setAmounts(newAmounts)
   }
 
-  const addNewAddress = () => {
-    setAddresses([...addresses, '0x...'])
-    setAmounts([...amounts, '0'])
-  }
+  // const addNewAddress = () => {
+  //   setAddresses([...addresses, '0x...'])
+  //   setAmounts([...amounts, '0'])
+  // }
 
   const clearAll = () => {
     setAddresses([])
@@ -188,7 +188,7 @@ export function Superspray() {
                   <AddIcon />
                   Import CSV
                 </Button>
-                <Button
+                {/* <Button
                   variant="outline"
                   size="icon"
                   className="rounded-full shadow-xs [border:1px_solid_#F1F1F1]"
@@ -201,7 +201,7 @@ export function Superspray() {
                   className="rounded-full shadow-xs [border:1px_solid_#F1F1F1]"
                 >
                   <Settings className="h-5 w-5 text-gray-500" />
-                </Button>
+                </Button> */}
               </div>
             </div>
 
@@ -283,14 +283,14 @@ export function Superspray() {
             {/* Action Buttons */}
             <div className="mb-6 flex items-center justify-between">
               <div className="flex gap-3">
-                <Button
+                {/* <Button
                   variant="outline"
                   className="flex cursor-pointer items-center gap-2 rounded-xl px-4 py-3 shadow-xs [border:1px_solid_#F1F1F1]"
                   onClick={addNewAddress}
                 >
                   <AddIcon />
                   Add new
-                </Button>
+                </Button> */}
                 <Button
                   variant="ghost"
                   className="cursor-pointer px-4 py-3 underline underline-offset-4"

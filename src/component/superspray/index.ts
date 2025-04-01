@@ -1,1 +1,1 @@
-export * from './superspray'
+export * from './superspray.component'

@@ -1,9 +1,9 @@
 import { useAccount, useBalance, useDisconnect } from 'wagmi'
-import { ConnectButton as RainbowConnectButton } from '@rainbow-me/rainbowkit'
 import { formatAddress } from '@/utils/format'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { formatEther } from 'ethers'
+import { CustomConnectedButton } from '@/components/buttons/custom-connected-button'
 
 export function CustomConnectButton() {
   const { address, isConnected } = useAccount()
@@ -13,7 +13,7 @@ export function CustomConnectButton() {
   const { disconnect } = useDisconnect()
 
   if (!isConnected) {
-    return <RainbowConnectButton />
+    return <CustomConnectedButton />
   }
 
   return (

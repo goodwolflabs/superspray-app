@@ -3,7 +3,7 @@
 import { Bell, Moon, Sun } from 'lucide-react'
 import Image from 'next/image'
 import { useTheme } from '@/hooks/useTheme'
-import { CustomConnectButton } from '../ui/CustomConnectButton'
+import { CustomConnectButton } from '../../components/buttons/custom-connect-button'
 
 export function Header() {
   const { theme, toggleTheme } = useTheme()
