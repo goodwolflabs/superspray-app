@@ -25,12 +25,12 @@ export function Header() {
       <div className="flex items-center gap-4">
         <button
           onClick={toggleTheme}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-inherit transition-colors hover:bg-gray-200/50"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-inherit transition-colors hover:bg-gray-200/50 dark:hover:bg-dark-200/50"
         >
           {theme === 'dark' ? (
-            <Sun className="h-5 w-5 text-gray-500 transition-colors" />
+            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 transition-all text-white" />
           ) : (
-            <Moon className="h-5 w-5 text-gray-500 transition-colors" />
+            <Moon className="h-[1.2rem] w-[1.2rem] scale-100 transition-all text-dark-300" />
           )}
         </button>
         {/* <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">

@@ -311,7 +311,7 @@ export function Superspray() {
                   className="cursor-pointer px-3 py-2 underline underline-offset-4 dark:text-white"
                   onClick={handlePasteFromClipboard}
                 >
-                  <ClipboardIcon />
+                  <ClipboardIcon className="dark:fill-white" />
                   Paste from Clipboard
                 </Button>
                 <Button
