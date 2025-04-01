@@ -153,7 +153,7 @@ export function Superspray() {
           <div className="rounded-3xl border border-gray-200 bg-white p-4 shadow-lg dark:border-dark-100 dark:bg-dark-300 md:p-7">
             {/* Chain Selector */}
             <div className="mb-4 flex flex-col gap-2 sm:flex-row">
-              <div className="flex gap-1 rounded-full border border-gray-200 p-1 dark:border-gray-700">
+              <div className="flex gap-1 rounded-full border border-gray-200 p-1 dark:border-dark-100">
                 <button
                   className="flex flex-1 cursor-pointer items-center gap-2 rounded-full border border-gray-100 px-3 py-2 hover:bg-gray-50 dark:border-dark-100 dark:hover:bg-dark-200 md:px-4 md:py-2"
                   onClick={openChainModal}
@@ -264,13 +264,13 @@ export function Superspray() {
                   key={`${address}-${index}`}
                   className="flex flex-col gap-3 sm:flex-row"
                 >
-                  <div className="flex-1 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-dark-200">
+                  <div className="flex-1 rounded-xl border border-gray-100 bg-gray-50 px-4 py-3 dark:border-dark-100 dark:bg-dark-200">
                     <div className="text-xs text-gray-500 dark:text-gray-400">
                       Wallet address
                     </div>
                     <div className="text-xs dark:text-white">{address}</div>
                   </div>
-                  <div className="rounded-xl border border-gray-100 bg-gray-50 px-4 py-3 dark:border-gray-700 dark:bg-dark-200 sm:w-40">
+                  <div className="rounded-xl border border-gray-100 bg-gray-50 px-4 py-3 dark:border-dark-100 dark:bg-dark-200 sm:w-40">
                     <input
                       type="number"
                       step="0.0001"
@@ -286,7 +286,7 @@ export function Superspray() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="shadow-xs flex h-10 w-10 items-center justify-center self-center rounded-full border border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-dark-200"
+                    className="shadow-xs flex h-10 w-10 items-center justify-center self-center rounded-full border border-gray-100 bg-gray-50 dark:border-dark-100 dark:bg-dark-200"
                     onClick={() => removeAddress(index)}
                   >
                     <X className="h-5 w-5 text-gray-500 dark:text-gray-400" />
