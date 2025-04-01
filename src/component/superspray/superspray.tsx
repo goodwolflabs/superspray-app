@@ -4,9 +4,7 @@ import { ChevronDown, Clock, Settings, X } from 'lucide-react'
 import { useState } from 'react'
 import { useWallet } from '@/hooks/useWallet'
 import { Button } from '@/components/ui/button'
-import { ClipboardIcon } from '@/components/icons/clipboard-icon'
-import { ChainIcon } from '@/components/icons/chain-icon'
-import { AddIcon } from '@/components/icons/add-icon'
+import { ClipboardIcon, ChainIcon, AddIcon } from '@/components/icons'
 import { officialTokenByChain } from '@/constants/official-tokens'
 import Image from 'next/image'
 import { type Address } from 'viem'
@@ -45,7 +43,6 @@ export function Superspray() {
   }
 
   const addNewAddress = () => {
-    // Generar una dirección vacía con formato 0x...
     setAddresses([...addresses, '0x...'])
     setAmounts([...amounts, '0'])
   }
@@ -61,7 +58,6 @@ export function Superspray() {
       const lines = text.split('\n').filter(line => line.trim())
 
       const addressesAndAmounts = lines.map(line => {
-        // Try to split by comma first, if not found, split by space
         const parts = line.includes(',')
           ? line.split(',').map(item => item.trim())
           : line.split(/\s+/).map(item => item.trim())
@@ -101,7 +97,6 @@ export function Superspray() {
   }
 
   const handleSpray = async () => {
-    // Filtramos transacciones vacías o inválidas
     const transactions = addresses
       .map((address, index) => ({
         address,
@@ -129,11 +124,9 @@ export function Superspray() {
         await sprayToken(selectedToken.address as Address, transactions)
       }
 
-      // Mostrar un mensaje de éxito
       alert('Spray completed successfully!')
 
-      // Opcional: limpiar los campos después de un spray exitoso
-      // clearAll();
+      clearAll()
     } catch (error) {
       console.error('Spray failed:', error)
       alert(

@@ -9,7 +9,7 @@ import {
 } from 'wagmi'
 import { parseEther } from 'viem'
 import { useChainModal } from '@rainbow-me/rainbowkit'
-import { getSprayContract } from '@/contract/spray.abi'
+import { getSprayContract } from '@/contract'
 import { erc20Abi, type Address } from 'viem'
 import { useState } from 'react'
 import { mode, modeTestnet } from 'viem/chains'

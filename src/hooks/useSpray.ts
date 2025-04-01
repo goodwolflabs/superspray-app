@@ -1,6 +1,6 @@
 import { useWriteContract, useChainId } from 'wagmi'
 import { parseEther } from 'ethers'
-import { getSprayContract } from '@/contract/spray.abi'
+import { getSprayContract } from '@/contract'
 import { erc20Abi } from 'viem'
 
 interface SprayTransaction {
@@ -24,9 +24,8 @@ export function useSpray() {
     const addresses = transactions.map(tx => tx.address as `0x${string}`)
     const amounts = transactions.map(tx => parseEther(tx.amount))
     const totalAmount = amounts.reduce((a, b) => a + b, BigInt(0))
-    console.log({ amounts, addresses, totalAmount })
 
-    return await writeDisperseEther({
+    return writeDisperseEther({
       address: sprayContract.address as `0x${string}`,
       abi: sprayContract.abi,
       functionName: 'disperseEther',
@@ -46,7 +45,6 @@ export function useSpray() {
     const amounts = transactions.map(tx => parseEther(tx.amount))
     const totalAmount = amounts.reduce((a, b) => a + b, BigInt(0))
 
-    // First approve the spray contract
     writeApproveToken({
       address: tokenAddress,
       abi: erc20Abi,
@@ -54,7 +52,6 @@ export function useSpray() {
       args: [sprayContract.address as `0x${string}`, totalAmount],
     })
 
-    // Then disperse the tokens
     return writeDisperseToken({
       address: sprayContract.address as `0x${string}`,
       abi: sprayContract.abi,

@@ -1,5 +1,5 @@
 interface IconProps {
-  className?: string
+  readonly className?: string
 }
 
 export function AddIcon({ className }: IconProps) {
