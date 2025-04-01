@@ -8,7 +8,7 @@ import {
   useWriteContract,
   useEstimateMaxPriorityFeePerGas,
 } from 'wagmi'
-import { parseEther } from 'viem'
+import { parseEther, parseUnits } from 'viem'
 import { useChainModal } from '@rainbow-me/rainbowkit'
 import { getSprayContract } from '@/contract/spray.abi'
 import { erc20Abi, type Address } from 'viem'
@@ -93,14 +93,14 @@ export function useWallet() {
     try {
       setIsSending(true)
 
-      const decimalsData = await readContract(config, {
+      const decimals = await readContract(config, {
         address: tokenAddress,
         abi: erc20Abi,
         functionName: 'decimals',
       })
 
       const recipients = transactions.map(tx => tx.address as Address)
-      const values = transactions.map(tx => parseEther(tx.amount))
+      const values = transactions.map(tx => parseUnits(tx.amount, decimals))
       const totalAmount = values.reduce((a, b) => a + b, BigInt(0))
 
       console.log('Spraying Token:', {
@@ -109,7 +109,7 @@ export function useWallet() {
         values,
         totalAmount: totalAmount.toString(),
         contractAddress: sprayContract.address,
-        decimals: decimalsData,
+        decimals,
       })
 
       await writeTokenContract({
